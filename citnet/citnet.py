@@ -21,7 +21,7 @@
 import socket
 import sys
 
-lass CitNet:
+class CitNet:
     """
     Main socket handler for both TCP and UDP.
 
