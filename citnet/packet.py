@@ -46,12 +46,12 @@ class Packet:
         return self.receivedPacket
 
     @data.setter
-    def data(self, receve_data):
+    def data(self, receve_data=None):
         if receve_data != None:
             self.receivedPacket = receve_data
         
         else:
-            pass
+            raise DataError("Specify data. Expected -> receive_data got -> NoneType")
 
         return self.receivedPacket
 
