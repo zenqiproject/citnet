@@ -111,19 +111,22 @@ class Host:
 
         if self.citnet != None:
             self.citnet.connect((address.host, address.port))
-    
+
+        return self.citnet
+
     def check_events(self):
 
         con, a = self.citnet.accept()
-    
+        receive = con.recv(2048)
         event = Event()
         
         if a:
             event.type = EventType.CITNET_EVENT_CONNECT
-            
-        elif con.recv(2048):
+
+        if receive:
+            print(receive)
             event.type = EventType.CITNET_EVENT_RECEIVE
-        
+
         return event
 
     def service(self, timeout: int = 0):
