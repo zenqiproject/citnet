@@ -55,12 +55,12 @@ class Peer:
         return self._data
 
     @data.setter
-    def data(self, data):
+    def data(self, data=None):
         # peer data including Peer host and port.
         if data != None:
             self._data = data
         else:
-            pass
+            raise DataError("Specify data. Expected -> data got -> NoneType")
 
         return self.data
 
