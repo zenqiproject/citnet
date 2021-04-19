@@ -15,7 +15,7 @@ while running:
     event = host.service(1) # -> wait 1 second for upcoming event
 
     if event.type == EventType.CITNET_EVENT_CONNECT:
-        print("Got connection")
+        print("Got connection {}".format(event.peer.data))
 
     elif event.type == EventType.CITNET_EVENT_DISCONNECT:
         print("Client disconnected")
