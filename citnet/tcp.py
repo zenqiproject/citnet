@@ -98,6 +98,20 @@ class Event:
         
         return self._peer
 
+    @property
+    def packet(self):
+        return self._packet
+    
+    @packet.setter
+    def packet(self, packet: Packet):
+        if data:
+            self._packet = data
+        
+        else:
+            raise DataError("Specify data. Expected -> Packet got -> NoneType")
+
+        return self._packet
+
 class Host:
     """
     Host(Address: address, int: peer_count)
@@ -153,7 +167,7 @@ class Host:
         receive = con.recv(2048)
         event = Event()
         peer  = Peer(self.citnet)
-        
+
         if a:
             event.type = EventType.CITNET_EVENT_CONNECT
             peer.data = a
@@ -161,6 +175,7 @@ class Host:
 
         if receive:
             event.type = EventType.CITNET_EVENT_RECEIVE
+            event.packet = Packet(receivedPacket=receive)
 
         return event
 
