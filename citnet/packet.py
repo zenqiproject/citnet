@@ -18,28 +18,25 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import socket
-import random
+import struct
+import enum
 
-class Address:
 
+class Packet:
     """
-    Main class for creating and handling addresses for CitNet.
+    Create a new packet object that can be sent or receive.
 
     ATTRIBUTE:
-        
-        host:   str     = None -> A host for a server to bind to. If none, return local hostname
-        port:   int     = None -> A port for a server to bind to. If none, return random port from range 1024 -> 49151
-    
+        data:   bytes   =   a byte object that act as a main data for packet that can be packed or unpack
     """
 
-    def __init__(self, host: str=None, port: int=None):
-        self.host       = host
-        self.port       = port
+    dataLength: int     = 0
+    version: int        = 1
 
-        if self.host == "" or self.host == None:
-            self.host = socket.gethostbyname(socket.gethostname())
+    def __init__(self, data: bytes=None):
+        self.data = data
+        if self.data != None:
+            self.dataLength = len(data)
 
-        elif self.port == None:
-            self.port = random.randint(1024, 49151) # if the port is lower than 1024, it requires administrative previledges
-
+    def pack(self):
+        return struct.pack("IIII%ds"%(self.dataLength,), self.version, self.type, self.)
