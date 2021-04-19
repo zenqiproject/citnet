@@ -51,9 +51,19 @@ class Event:
 
     @property
     def type(self):
+        if self.eventType:
+            return self.eventType
+        else:
+            return EventType.CITNET_EVENT_NONE
+
+    @type.setter
+    def type(self, eventType: EventType):
+        if eventType:
+            self.eventType = eventType
+        else:
+            self.eventType = EventType.CITNET_EVENT_NONE
+
         return self.eventType
-
-
 
 class Host:
     """
@@ -109,21 +119,22 @@ class Host:
         event = Event()
         
         if a:
-            print(a)
-            event.event_type = EventType.CITNET_EVENT_CONNECT
+            event.type = EventType.CITNET_EVENT_CONNECT
             
         elif con.recv(2048):
-            event.event_type = EventType.CITNET_EVENT_RECEIVE
+            event.type = EventType.CITNET_EVENT_RECEIVE
         
         return event
 
     def service(self, timeout: int = 0):
 
         if self.citnet != None:
-            self.check_events()
+            events = self.check_events()
 
         else:
-            raise TypeError("citnet is not defined")
+            raise CitNetError("CitNet is not defined")
 
         time.sleep(timeout)
+
+        return events
     
