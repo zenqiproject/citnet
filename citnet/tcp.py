@@ -27,6 +27,7 @@ from .errors import *
 from .citnet import CitNet
 from .address import Address
 from .event_type import EventType
+from .packet import Packet
 
 
 class CitNet_TCP(CitNet):
