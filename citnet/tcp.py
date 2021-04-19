@@ -41,6 +41,27 @@ class CitNet_TCP(CitNet):
         self.socketProto    = socket.IPPROTO_UDP 
 
 
+class Peer:
+    """
+    Main class for handling peer
+    """
+    _data: None
+    def __init__(self, citnet: CitNet_TCP):
+        self.citnet = citnet
+
+    @property
+    def data(self):
+        return self._data
+
+    @data.setter
+    def data(self, data):
+        # peer data including Peer host and port.
+        if data != None:
+            self._data = data
+        else:
+            pass
+
+        return self.data
 
 class Event:
 
@@ -64,6 +85,17 @@ class Event:
             self.eventType = EventType.CITNET_EVENT_NONE
 
         return self.eventType
+
+    @property
+    def peer(self):
+        return self._peer
+
+    @peer.setter
+    def peer(self, peer: Peer):
+        if peer != None:
+            self._peer = peer
+        
+        return self._peer
 
 class Host:
     """
@@ -119,12 +151,14 @@ class Host:
         con, a = self.citnet.accept()
         receive = con.recv(2048)
         event = Event()
+        peer  = Peer(self.citnet)
         
         if a:
             event.type = EventType.CITNET_EVENT_CONNECT
+            peer.data = a
+            event.peer = peer
 
         if receive:
-            print(receive)
             event.type = EventType.CITNET_EVENT_RECEIVE
 
         return event
