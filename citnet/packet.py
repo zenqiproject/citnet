@@ -33,8 +33,25 @@ class Packet:
     dataLength: int     = 0
     version: int        = 1
 
-    def __init__(self, data: bytes=None):
+    def __init__(self, data: bytes=None, receivedPacket: bytes = None):
         self.data = data
+        self.receivedPacket = receivedPacket
+
         if self.data != None:
             self.dataLength = len(data)
+
+    
+    @property
+    def data(self): # property for received data
+        return self.receivedPacket
+
+    @data.setter
+    def data(self, receve_data):
+        if receve_data != None:
+            self.receivedPacket = receve_data
+        
+        else:
+            pass
+
+        return self.receivedPacket
 
