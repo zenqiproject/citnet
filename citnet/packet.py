@@ -38,5 +38,3 @@ class Packet:
         if self.data != None:
             self.dataLength = len(data)
 
-    def pack(self):
-        return struct.pack("IIII%ds"%(self.dataLength,), self.version, self.type, self.)
