@@ -104,8 +104,8 @@ class Event:
     
     @packet.setter
     def packet(self, packet: Packet):
-        if data:
-            self._packet = data
+        if packet:
+            self._packet = packet
         
         else:
             raise DataError("Specify data. Expected -> Packet got -> NoneType")
@@ -175,7 +175,9 @@ class Host:
 
         if receive:
             event.type = EventType.CITNET_EVENT_RECEIVE
-            event.packet = Packet(receivedPacket=receive)
+            pack = Packet()
+            pack.data = receive
+            event.packet = pack
 
         return event
 

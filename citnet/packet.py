@@ -30,19 +30,19 @@ class Packet:
         data:   bytes   =   a byte object that act as a main data for packet that can be packed or unpack
     """
 
+    receivedPacket = None
     dataLength: int     = 0
     version: int        = 1
 
-    def __init__(self, data: str=None, receivedPacket: bytes = None):
-        self.data = bytes(data, "utf-8")
-        self.receivedPacket = receivedPacket
-
-        if self.data != None:
-            self.dataLength = len(data)
+    def __init__(self, _data: str=None):
+    
+        if _data != None:
+            self._data = bytes(_data, "utf-8")
+            self.dataLength = len(self._data)
 
     
     def create(self):
-        return self.data
+        return self._data
 
     @property
     def data(self): # property for received data
