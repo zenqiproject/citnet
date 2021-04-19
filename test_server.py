@@ -17,4 +17,4 @@ while running:
         print("Got connection")
 
     elif event.type == CITNET_EVENT_DISCONNECT:
-        print("Client disconnected")     
+        print("Client disconnected")
