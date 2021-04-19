@@ -19,4 +19,4 @@
 # SOFTWARE.
 
 from .address import Address
-
+from .event_type import *
