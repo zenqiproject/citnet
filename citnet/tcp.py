@@ -44,7 +44,7 @@ class CitNet_TCP(CitNet):
 
 class Event:
 
-    event_type:     EventType = EventType.CITNET_EVENT_NONE
+    event_type: eventType = EventType.CITNET_EVENT_NONE
 
     def __init__(self):
         self._packet = None

@@ -21,7 +21,7 @@
 import enum
 
 class EventType(enum.Enum):
-
+    CITNET_EVENT_NONE           = 0
     CITNET_EVENT_CONNECT        = 1
     CITNET_EVENT_DISCONNECT     = 2
     CITNET_EVENT_RECEIVE        = 3
