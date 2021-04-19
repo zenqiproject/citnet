@@ -19,4 +19,5 @@
 # SOFTWARE.
 
 from .address import Address
+from .packet import Packet
 from .event_type import *

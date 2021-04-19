@@ -33,14 +33,17 @@ class Packet:
     dataLength: int     = 0
     version: int        = 1
 
-    def __init__(self, data: bytes=None, receivedPacket: bytes = None):
-        self.data = data
+    def __init__(self, data: str=None, receivedPacket: bytes = None):
+        self.data = bytes(data, "utf-8")
         self.receivedPacket = receivedPacket
 
         if self.data != None:
             self.dataLength = len(data)
 
     
+    def create(self):
+        return self.data
+
     @property
     def data(self): # property for received data
         return self.receivedPacket
