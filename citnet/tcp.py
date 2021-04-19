@@ -44,14 +44,14 @@ class CitNet_TCP(CitNet):
 
 class Event:
 
-    event_type: eventType = EventType.CITNET_EVENT_NONE
+    eventType: EventType.CITNET_EVENT_NONE
 
     def __init__(self):
         self._packet = None
 
     @property
     def type(self):
-        return self.event_type
+        return self.eventType
 
 
 
