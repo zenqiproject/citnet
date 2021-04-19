@@ -23,6 +23,7 @@ import socket
 import struct
 import time
 import sys
+from .errors import *
 from .citnet import CitNet
 from .address import Address
 from .event_type import EventType
@@ -95,6 +96,9 @@ class Host:
             
         
     def connect(self, address: Address):
+        if self.address != None:
+            raise AddressError("Address has a value. Expected -> None.")
+
         if self.citnet != None:
             self.citnet.connect((address.host, address.port))
     
