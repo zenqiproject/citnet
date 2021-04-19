@@ -6,6 +6,10 @@ class CitNetError(Exception):
 
         super().__init__(message)
 
+class DataError(Exception):
+    def __init__(self):
+        super().__init__("Unknwon data.")
+
 class AddressError(Exception):
     def __init__(self):
         super().__init__("Please specify address.")
